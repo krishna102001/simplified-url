@@ -5,15 +5,14 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	"github.com/krishna102001/simplify-url/database"
 	"github.com/krishna102001/simplify-url/routes"
 )
 
 func init() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Failed to load the env file")
-	}
+	// if err := godotenv.Load(); err != nil {
+	// 	log.Fatal("Failed to load the env file")
+	// }
 	database.Init_DB()
 }
 

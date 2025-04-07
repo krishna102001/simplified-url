@@ -13,7 +13,9 @@ import (
 func generateshorturl(url string) string {
 	hasher := md5.New()
 	hasher.Write([]byte(url))
+	// log.Println(hasher)
 	shorturl := hex.EncodeToString(hasher.Sum(nil))
+	// log.Println(shorturl)
 	return shorturl[:8]
 }
 
@@ -25,6 +27,7 @@ func CreateSimplifyUrl(c *gin.Context) {
 		c.JSON(400, gin.H{"success": true, "message": "Invalid request body"})
 		return
 	}
+	// log.Println(data.Original_url)
 	shorturl := generateshorturl(data.Original_url)
 	var url database.Shorturl
 	url.Original_url = data.Original_url
@@ -42,7 +45,7 @@ func GetSimplifyUrl(c *gin.Context) {
 	var original_url struct {
 		Original_url string
 	}
-	if err := database.DB.Model(&database.Shorturl{}).Select("original_url").Find(&original_url).Where("short_url =?", short_url).Error; err != nil {
+	if err := database.DB.Model(&database.Shorturl{}).Select("original_url").Where("short_url = ?", short_url).Find(&original_url).Error; err != nil {
 		c.JSON(400, gin.H{"success": false, "message": "Failed to get original url"})
 	}
 

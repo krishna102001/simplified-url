@@ -24,7 +24,9 @@ func main() {
 		log.Println("Failed to set proxies")
 	}
 
-	router.GET("/", routes.GetSimplifyUrl)
+	router.POST("/create-short-url", routes.CreateSimplifyUrl)
+
+	router.GET("/get-short-url/:id", routes.GetSimplifyUrl)
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {

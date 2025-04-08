@@ -27,7 +27,7 @@ func main() {
 
 	router.POST("/create-short-url", routes.CreateSimplifyUrl)
 
-	router.GET("/get-short-url/:id", routes.GetSimplifyUrl)
+	router.GET("/:id", routes.GetSimplifyUrl)
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {

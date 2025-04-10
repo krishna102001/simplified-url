@@ -16,7 +16,7 @@ func init() {
 	// }
 	database.Init_DB()
 }
-var c :=23
+
 func main() {
 	router := gin.Default()
 

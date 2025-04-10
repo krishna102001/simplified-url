@@ -13,7 +13,7 @@ jobs:
       - name: install go lang
         uses: actions/setup-go@v4
         with:
-          version: "^1.13.1"
+          version: "^1.24.0"
       - name: install packages
         run: go mod tidy
       - name: run build

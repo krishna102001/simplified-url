@@ -1,0 +1,20 @@
+name: Build on pull request
+
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  build-go:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone file
+        uses: actions/checkout@v4
+      - name: install go lang
+        uses: actions/setup-go@v4
+        with:
+          version: "^1.13.1"
+      - name: install packages
+        run: go mod tidy
+      - name: run build
+        run: go build -o my-app main.go
